@@ -9,6 +9,7 @@ class News_model extends CI_Model {
 
     public function __construct()
     {
+
         $this->load->database();
     }
 
@@ -24,14 +25,21 @@ class News_model extends CI_Model {
         return $query->row_array();
     }
 
-    public function index()
+    public function set_news()
     {
-        $data['news'] = $this->news_model->get_news();
-        $data['title'] = 'News archive';
+        $this->load->helper('url');
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('news/index', $data);
-        $this->load->view('templates/footer');
+        $slug = url_title($this->input->post('title'), 'dash', TRUE);
+
+        $data = array(
+            'title' => $this->input->post('title'),
+            'slug' => $slug,
+            'text' => $this->input->post('text')
+        );
+
+        return $this->db->insert('news', $data);
     }
+
+
 
 }

@@ -26,8 +26,8 @@ $config['base_url']	= 'http://localhost/php_website';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
-
+//$config['index_page'] = 'index.php';//empty to remove index.php
+$config['index_page'] = '';//empty to remove index.php
 /*
 |--------------------------------------------------------------------------
 | URI PROTOCOL
